@@ -1,0 +1,25 @@
+{
+  "name": "wakeup",
+  "version": "0.0.1",
+  "homepage": "https://github.com/waikup/app",
+  "authors": [
+    "Luis Iván <me@luisivan.net>"
+  ],
+  "description": "Changing the way you start your day",
+  "keywords": [
+    "alarm",
+    "smart",
+    "cloud"
+  ],
+  "license": "AGPLv3",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "framework7": "~0.9.7"
+  }
+}

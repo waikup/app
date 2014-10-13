@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<title>WakeUp</title>
+	<link rel="stylesheet" href="bower_components/framework7/dist/css/framework7.min.css">
+	<link rel="stylesheet" href="bower_components/framework7/dist/css/framework7.themes.min.css">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-yellow">
+	<!-- Status bar overlay for full screen mode (PhoneGap) -->
+	<div class="statusbar-overlay"></div>
+	<div class="views">
+	  	<div class="view view-main">
+	  		<div class="navbar">
+				<div class="navbar-inner">
+					<div class="center sliding">WakeUp</div>
+					<div class="right">
+							<a href="add.html" class="link icon-only"><i class="icon icon-plus">+</i></a>
+					</div>
+				</div>
+			</div>
+			<div class="pages">
+				<div data-page="main" class="page">
+					<div class="page-content">
+					  	<a href="main.html"></a>
+					  	<a href="landing.html"></a>
+				  	</div>
+				</div>
+			</div>
+	  	</div>
+	</div>
+	<script type="text/javascript" src="bower_components/framework7/dist/js/framework7.js"></script>
+	<script type="text/javascript" src="js/API.js"></script>
+	<script type="text/javascript" src="app.js"></script>
+	<script type="text/javascript" src="js/Events.js"></script>
+</body>
+</html>              
