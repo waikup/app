@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+    <widget xmlns   = "http://www.w3.org/ns/widgets"
+        xmlns:gap   = "http://phonegap.com/ns/1.0"
+        id          = "com.wakeup.alarm"
+        version     = "1.0.0" >
+
+    <name>WakeUp</name>
+
+    <description>Changing the way you wake up</description>
+
+    <gap:platform name="ios" />
+    <gap:platform name="android" />
+    <gap:plugin name="com.randdusing.bluetoothle" version="1.0.0" />
+    <gap:plugin name="de.appplant.cordova.plugin.background-mode" version="0.5.0" />
+
+</widget>
