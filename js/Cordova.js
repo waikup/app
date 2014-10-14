@@ -21,7 +21,7 @@ BLE.createDelegate = function() {
 
 	    didDetermineStateForRegion: function (pluginResult) {
 
-	        console.log('[DOM] didDetermineStateForRegion: ' + JSON.stringify(pluginResult))
+	        alert('[DOM] didDetermineStateForRegion: ' + JSON.stringify(pluginResult))
 
 	        cordova.plugins.locationManager.appendToDeviceLog('[DOM] didDetermineStateForRegion: ' + JSON.stringify(pluginResult))
 	    },
@@ -29,11 +29,11 @@ BLE.createDelegate = function() {
 	    didStartMonitoringForRegion: function (pluginResult) {
 	        console.log('didStartMonitoringForRegion:', pluginResult)
 
-	        console.log('didStartMonitoringForRegion:' + JSON.stringify(pluginResult))
+	        alert('didStartMonitoringForRegion:' + JSON.stringify(pluginResult))
 	    },
 
 	    didRangeBeaconsInRegion: function (pluginResult) {
-	        console.log('[DOM] didRangeBeaconsInRegion: ' + JSON.stringify(pluginResult))
+	        alert('[DOM] didRangeBeaconsInRegion: ' + JSON.stringify(pluginResult))
 	    }
 	})
 }
