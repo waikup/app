@@ -40,5 +40,6 @@ BLE.createBeaconRegion = function() {
     	// minor = 1000, // optional, defaults to wildcard if left empty
     	// major = 5 // optional, defaults to wildcard if left empty
 
-    return new cordova.plugins.locationManager.BeaconRegion(identifier, uuid, major, minor)
+    // return new cordova.plugins.locationManager.BeaconRegion(identifier, uuid, major, minor)
+    return new cordova.plugins.locationManager.BeaconRegion(identifier, uuid)
 }
