@@ -1,4 +1,5 @@
 document.addEventListener("deviceready", function() {
+	console.log(window.plugin)
 	window.plugin.backgroundMode.enable()
 })
 
