@@ -35,8 +35,8 @@ BLE.createDelegate = function() {
 }
 
 BLE.createBeaconRegion = function() {	
-    var uuid = 'DA5336AE-2042-453A-A57F-F80DD34DFCD9',
-    	identifier = 'beaconAtTheMacBooks'
+    var uuid = 'D9B9EC1F-3925-43D0-80A9-1E39D4CEA95D',
+    	identifier = 'raspi'
     	// minor = 1000, // optional, defaults to wildcard if left empty
     	// major = 5 // optional, defaults to wildcard if left empty
 
