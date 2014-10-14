@@ -12,7 +12,7 @@ BLE.init = function() {
 		beaconRegion = BLE.createBeaconRegion()
 		
 	cordova.plugins.locationManager.setDelegate(delegate)
-	cordova.plugins.locationManager.requestWhenInUseAuthorization()
+	// detect if iOS and call cordova.plugins.locationManager.requestWhenInUseAuthorization()
 	cordova.plugins.locationManager.startMonitoringForRegion(beaconRegion).fail(console.error.bind(console)).done()
 	cordova.plugins.locationManager.startRangingBeaconsInRegion(beaconRegion).fail(console.error.bind(console)).done()
 }
