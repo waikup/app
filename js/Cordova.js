@@ -3,14 +3,16 @@ document.addEventListener("deviceready", function() {
 	window.plugin.backgroundMode.enable()
 })
 
-var BLE = {}
+var BLE = {
+	logs: []
+}
 
 BLE.init = function() {
 	BLE.createBeaconRegion()
 	BLE.createDelegate()
 	cordova.plugins.locationManager.setDelegate(BLE.delegate)
 	cordova.plugins.locationManager.requestWhenInUseAuthorization()
-	cordova.plugins.locationManager.startMonitoringForRegion(BLE.beaconRegion).fail(console.error).done()
+	cordova.plugins.locationManager.startMonitoringForRegion(BLE.beaconRegion).fail(console.error.bind(console)).done()
 }
 
 BLE.error = console.log.bind(console)
@@ -18,22 +20,15 @@ BLE.error = console.log.bind(console)
 BLE.createDelegate = function() {
 
 	BLE.delegate = new cordova.plugins.locationManager.Delegate().implement({
-
 	    didDetermineStateForRegion: function (pluginResult) {
-
-	        alert('[DOM] didDetermineStateForRegion: ' + JSON.stringify(pluginResult))
-
+	        BLE.logs.push({e: 'didDetermineStateForRegion', data: pluginResult})
 	        cordova.plugins.locationManager.appendToDeviceLog('[DOM] didDetermineStateForRegion: ' + JSON.stringify(pluginResult))
 	    },
-
 	    didStartMonitoringForRegion: function (pluginResult) {
-	        console.log('didStartMonitoringForRegion:', pluginResult)
-
-	        alert('didStartMonitoringForRegion:' + JSON.stringify(pluginResult))
+	    	BLE.logs.push({e: 'didStartMonitoringForRegion', data: pluginResult})
 	    },
-
 	    didRangeBeaconsInRegion: function (pluginResult) {
-	        alert('[DOM] didRangeBeaconsInRegion: ' + JSON.stringify(pluginResult))
+	    	BLE.logs.push({e: 'didRangeBeaconsInRegion', data: pluginResult})
 	    }
 	})
 }
