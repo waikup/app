@@ -6,6 +6,7 @@ var BLE = {}
 
 BLE.init = function() {
 	BLE.createBeaconRegion()
+	BLE.createDelegate()
 	cordova.plugins.locationManager.setDelegate(BLE.delegate)
 	cordova.plugins.locationManager.requestWhenInUseAuthorization()
 	cordova.plugins.locationManager.startMonitoringForRegion(BLE.beaconRegion).fail(console.error).done()
@@ -13,26 +14,28 @@ BLE.init = function() {
 
 BLE.error = console.log.bind(console)
 
-BLE.deledate = new cordova.plugins.locationManager.Delegate().implement({
+BLE.createDelegate = function() {
 
-    didDetermineStateForRegion: function (pluginResult) {
+	BLE.delegate = new cordova.plugins.locationManager.Delegate().implement({
 
-        console.log('[DOM] didDetermineStateForRegion: ' + JSON.stringify(pluginResult))
+	    didDetermineStateForRegion: function (pluginResult) {
 
-        cordova.plugins.locationManager.appendToDeviceLog('[DOM] didDetermineStateForRegion: ' + JSON.stringify(pluginResult))
-    },
+	        console.log('[DOM] didDetermineStateForRegion: ' + JSON.stringify(pluginResult))
 
-    didStartMonitoringForRegion: function (pluginResult) {
-        console.log('didStartMonitoringForRegion:', pluginResult)
+	        cordova.plugins.locationManager.appendToDeviceLog('[DOM] didDetermineStateForRegion: ' + JSON.stringify(pluginResult))
+	    },
 
-        console.log('didStartMonitoringForRegion:' + JSON.stringify(pluginResult))
-    },
+	    didStartMonitoringForRegion: function (pluginResult) {
+	        console.log('didStartMonitoringForRegion:', pluginResult)
 
-    didRangeBeaconsInRegion: function (pluginResult) {
-        console.log('[DOM] didRangeBeaconsInRegion: ' + JSON.stringify(pluginResult))
-    }
+	        console.log('didStartMonitoringForRegion:' + JSON.stringify(pluginResult))
+	    },
 
-})
+	    didRangeBeaconsInRegion: function (pluginResult) {
+	        console.log('[DOM] didRangeBeaconsInRegion: ' + JSON.stringify(pluginResult))
+	    }
+	})
+}
 
 BLE.createBeaconRegion = function() {	
     var uuid = 'DA5336AE-2042-453A-A57F-F80DD34DFCD9',
