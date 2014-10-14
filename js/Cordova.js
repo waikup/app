@@ -19,17 +19,17 @@ BLE.init = function() {
 
 BLE.error = console.log.bind(console)
 
+BLE.onibeacon = function(beacon) {
+	BLE.ibeacon = beacon
+}
+
 BLE.createDelegate = function() {
 	return new cordova.plugins.locationManager.Delegate().implement({
-	    didDetermineStateForRegion: function (pluginResult) {
-	        BLE.logs.push({e: 'didDetermineStateForRegion', data: pluginResult})
-	        cordova.plugins.locationManager.appendToDeviceLog('[DOM] didDetermineStateForRegion: ' + JSON.stringify(pluginResult))
-	    },
-	    didStartMonitoringForRegion: function (pluginResult) {
-	    	BLE.logs.push({e: 'didStartMonitoringForRegion', data: pluginResult})
-	    },
-	    didRangeBeaconsInRegion: function (pluginResult) {
-	    	BLE.logs.push({e: 'didRangeBeaconsInRegion', data: pluginResult})
+	    didDetermineStateForRegion: function (result) {},
+	    didStartMonitoringForRegion: function (result) {},
+	    didRangeBeaconsInRegion: function (result) {
+	    	if (result.beacons.length > 0)
+	    		BLE.onibeacon(result.beacons[0])
 	    }
 	})
 }
