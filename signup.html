@@ -7,24 +7,19 @@
 			</a>
 		</div>
 		<div class="center sliding">Sign up</div>
-		<div class="right">
-			<a href="#" class="link toggle">
-				<span>Done</span>
-			</a>
-		</div>
 	</div>
 </div>
 <div data-page="signup" class="page">
  	<div class="page-content">
  		<div class="content-block-title">Sign up</div>
- 		<form action="send-here.html" method="POST" class="ajax-submit-onchange">
+ 		<form action="http://192.168.1.149:8080/api/register" method="POST" class="ajax-submit" id="signupForm">
 	    	<div class="list-block">
 	  			<ul>
 	    			<li>
 	      				<div class="item-content">
 	        				<div class="item-inner">
 	          					<div class="item-input">
-	            					<input type="email" placeholder="Email">
+	            					<input type="text" placeholder="Username" name="username">
 	          					</div>
 	        				</div>
 	      				</div>
@@ -33,11 +28,12 @@
 	      				<div class="item-content">
 	        				<div class="item-inner">
 	          					<div class="item-input">
-	            					<input type="password" placeholder="Password">
+	            					<input type="password" placeholder="Password" name="password">
 	          					</div>
 	        				</div>
 	      				</div>
 	    			</li>
+	            	<input type="submit" value="Login">
 	    		</ul>
 	    	</div>
 	    </form>

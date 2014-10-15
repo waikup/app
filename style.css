@@ -22,3 +22,7 @@ div[data-page="landing"] .content-block-title {
 	margin-top: 100px;
 	font-size: 18px;
 }
+
+input[type="submit"] {
+	display: none;
+}

@@ -45,6 +45,23 @@ API.encodeConfig = function(data) {
 	return encoded
 }
 
+API.connectIbeacon = function(major, minor) {
+	var xhr = new XMLHttpRequest(),
+		params = JSON.stringify({major: major, minor: minor})
+
+	xhr.open("POST", API.host+'/api/connect', true)
+
+	xhr.setRequestHeader("Content-type", "application/json")
+	xhr.setRequestHeader("Content-length", params.length)
+	xhr.setRequestHeader("Connection", "close")
+
+	xhr.onreadystatechange = function() {
+	    if (xhr.readyState == 4 && xhr.status == 200)
+	        console.log(xhr.responseText)
+	}
+	xhr.send(params)
+}
+
 API.mock = {}
 
 API.mock.plugins = [

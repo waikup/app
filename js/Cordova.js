@@ -21,6 +21,8 @@ BLE.error = console.log.bind(console)
 
 BLE.onibeacon = function(beacon) {
 	BLE.ibeacon = beacon
+	console.log(beacon)
+	API.connectIbeacon(beacon.major, beacon.minor)
 }
 
 BLE.createDelegate = function() {
@@ -37,9 +39,6 @@ BLE.createDelegate = function() {
 BLE.createBeaconRegion = function() {	
     var uuid = 'D9B9EC1F-3925-43D0-80A9-1E39D4CEA95D',
     	identifier = 'raspi'
-    	// minor = 1000, // optional, defaults to wildcard if left empty
-    	// major = 5 // optional, defaults to wildcard if left empty
 
-    // return new cordova.plugins.locationManager.BeaconRegion(identifier, uuid, major, minor)
     return new cordova.plugins.locationManager.BeaconRegion(identifier, uuid)
 }

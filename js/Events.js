@@ -16,25 +16,21 @@ $$('[data-page="main"]').on('click', 'li', function (e) {
 	})
 })
 
-$$('[data-page="add"]').on('click', 'li', function (e) {
+$$('.views').on('click', '[data-page="add"] li', function (e) {
 	app.router.load({url: 'main.html', reload: true})
 	API.addPlugin(e.target.id, function(err) {
 		console.log(err)
 	})
 })
 
-$$('form#login').on('submitted', function (e) {
-  	var xhr = e.detail.xhr // actual XHR object
- 
-  	var data = e.detail.data // Ajax repsonse from action file
-  	// do something with response data
-})
-
-$$('form#signup').on('submitted', function (e) {
-  	var xhr = e.detail.xhr // actual XHR object
- 
-  	var data = e.detail.data // Ajax repsonse from action file
-  	// do something with response data
+$$('.views').on('submitted', '#loginForm, #signupForm', function (e) {
+  	var data = JSON.parse(e.detail.data)
+  	if (!data.token)
+	  	app.alert('Incorrect user/password', 'Login')
+	else {
+		localStorage.setItem('token', data.token)
+		window.location.reload()
+	}
 })
 
 window.addEventListener("message", function(e) {

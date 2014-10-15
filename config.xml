@@ -12,6 +12,7 @@
 
     <gap:platform name="ios" />
     <gap:platform name="android" />
+    <preference name="android-minSdkVersion" value="17" />
 
     <gap:plugin name="de.appplant.cordova.plugin.background-mode" version="0.5.0" />
     <gap:plugin name="com.unarin.cordova.beacon" version="3.0.0" />
