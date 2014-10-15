@@ -15,6 +15,7 @@ API.req = function(method, endpoint, params, cb) {
 	xhr.onreadystatechange = function() {
 	    if (xhr.readyState !== 4) return
 	    var err = (xhr.status == 200) ? false : true
+		console.log(xhr.responseText)
 	    cb(err, JSON.parse(xhr.responseText))
 	}
 	xhr.send(JSON.stringify(params))
@@ -75,6 +76,7 @@ API.connectIbeacon = function(major, minor) {
 	}
 	xhr.send(params)*/
 	API.req('POST', '/connect', {major: major, minor: minor}, function(err, data) {
+		console.log(err)
 		console.log(data)
 	})
 }
