@@ -15,6 +15,7 @@
     <preference name="android-minSdkVersion" value="17" />
     <access origin="*" />
 
+    <gap:plugin name="org.apache.cordova.device" version="0.2.3" />
     <gap:plugin name="de.appplant.cordova.plugin.background-mode" version="0.5.0" />
     <gap:plugin name="com.unarin.cordova.beacon" version="3.0.0" />
 
