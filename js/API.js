@@ -75,6 +75,7 @@ API.connectIbeacon = function(major, minor) {
 	        console.log(xhr.responseText)
 	}
 	xhr.send(params)*/
+	if (!localStorage.getItem('major')) return
 	var prevMajor = JSON.parse(localStorage.getItem('major')),
 		prevMinor = JSON.parse(localStorage.getItem('minor'))
 	if (prevMajor == major && prevMinor == minor)
