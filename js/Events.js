@@ -23,14 +23,18 @@ $$('.views').on('click', '[data-page="add"] li', function (e) {
 	})
 })
 
-$$('.views').on('submitted', '#loginForm, #signupForm', function (e) {
-  	var data = JSON.parse(e.detail.data)
-  	if (!data.token)
+function onToken(token) {
+	if (!token)
 	  	app.alert('Incorrect user/password', 'Login')
 	else {
-		localStorage.setItem('token', data.token)
+		localStorage.setItem('token', token)
 		window.location.reload()
 	}
+}
+
+$$('.views').on('submitted', '#loginForm, #signupForm', function (e) {
+  	var data = JSON.parse(e.detail.data)
+  	onToken(data.token)
 })
 
 window.addEventListener("message", function(e) {
