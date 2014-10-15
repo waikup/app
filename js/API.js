@@ -1,8 +1,24 @@
 var API = {
-	host: 'http://localhost:8888'
+	host: 'http://192.168.1.128:8080'
 }
 
 API.setToken = function(token) {}
+
+API.req = function(method, endpoint, params, cb) {
+	var xhr = new XMLHttpRequest()
+
+	xhr.open(method, API.host+'/api'+endpoint, true)
+
+	xhr.setRequestHeader("Content-Type", "application/json")
+	xhr.setRequestHeader("X-User-Token", localStorage.getItem('token'))
+
+	xhr.onreadystatechange = function() {
+	    if (xhr.readyState !== 4) return
+	    var err = (xhr.status == 200) ? false : true
+	    cb(err, JSON.parse(xhr.responseText))
+	}
+	xhr.send(JSON.stringify(params))
+}
 
 API.getPlugins = function(cb) {
 	cb(null, API.mock.plugins)
@@ -46,20 +62,21 @@ API.encodeConfig = function(data) {
 }
 
 API.connectIbeacon = function(major, minor) {
-	var xhr = new XMLHttpRequest(),
+	/*var xhr = new XMLHttpRequest(),
 		params = JSON.stringify({major: major, minor: minor})
 
 	xhr.open("POST", API.host+'/api/connect', true)
 
 	xhr.setRequestHeader("Content-type", "application/json")
-	xhr.setRequestHeader("Content-length", params.length)
-	xhr.setRequestHeader("Connection", "close")
 
 	xhr.onreadystatechange = function() {
 	    if (xhr.readyState == 4 && xhr.status == 200)
 	        console.log(xhr.responseText)
 	}
-	xhr.send(params)
+	xhr.send(params)*/
+	API.req('POST', '/connect', {major: major, minor: minor}, function(err, data) {
+		console.log(data)
+	})
 }
 
 API.mock = {}
