@@ -37,6 +37,14 @@ $$('.views').on('submitted', '#loginForm, #signupForm', function (e) {
   	onToken(data.token)
 })
 
+$$('.views').on('click', '#loginForm a', function (e) {
+  	$$('#loginForm input[type="submit"]').click()
+})
+
+$$('.views').on('click', '#signupForm a', function (e) {
+  	$$('#signupForm input[type="submit"]').click()
+})
+
 window.addEventListener("message", function(e) {
 	var plugin = JSON.parse(e.data)
 	API.savePlugin(currentPlugin, plugin.attr)
