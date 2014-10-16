@@ -13,7 +13,7 @@ API.req = function(method, endpoint, params, cb) {
 	xhr.setRequestHeader("X-User-Token", localStorage.getItem('token'))
 
 	xhr.onreadystatechange = function() {
-	    if (xhr.readyState !== 4) return
+	    if (xhr.readyState !== 4) cb(false)
 	    var err = (xhr.status == 200) ? false : true
 		console.log(xhr.responseText)
 	    cb(err, JSON.parse(xhr.responseText))
@@ -22,11 +22,26 @@ API.req = function(method, endpoint, params, cb) {
 }
 
 API.getPlugins = function(cb) {
-	cb(null, API.mock.plugins)
+	API.req('GET', '/plugins/installed', null, function(err, data) {
+		if (err) return
+		var plugins = []
+		for (var id in data) {
+			data[id].id = id
+			plugins.push(data[id])
+		}
+		cb(err, plugins)
+	})
 }
 
 API.getAvailablePlugins = function(cb) {
-	cb(null, API.mock.availablePlugins)
+	API.req('GET', '/plugins', null, function(err, data) {
+		var plugins = []
+		for(var id in data) {
+			data[id].id = id
+			plugins.push(data[id])
+		}
+		cb(err, plugins)
+	})
 }
 
 API.getPluginConfig = function(id, cb) {
@@ -37,6 +52,22 @@ API.getPluginConfig = function(id, cb) {
 
 API.addPlugin = function(name, cb) {
 	cb(null, null)
+}
+
+API.getAlarm = function(cb) {
+	API.req('GET', '/alarm', {}, cb)
+}
+
+API.enableAlarm = function(time) {
+	API.req('POST', '/enable', {time: time}, function(err, data) {
+		console.log(data)
+	})
+}
+
+API.disableAlarm = function(time) {
+	API.req('POST', '/disable', {}, function(err, data) {
+		console.log(data)
+	})
 }
 
 API.savePlugin = function(name, uuid, attr) {}
@@ -70,32 +101,6 @@ API.connectIbeacon = function(major, minor) {
 }
 
 API.mock = {}
-
-API.mock.plugins = [
-	{
-		id: 'soundcloud',
-		name: 'SoundCloud'
-	},
-	{
-		id: 'news',
-		name: 'News'
-	}
-]
-
-API.mock.availablePlugins = [
-	{
-		id: 'soundcloud',
-		name: 'SoundCloud'
-	},
-	{
-		id: 'news',
-		name: 'News'
-	},
-	{
-		id: 'weather',
-		name: 'Weather'
-	}
-]
 
 API.mock.pluginConfig = {
 	id: 'soundcloud',

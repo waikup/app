@@ -9,10 +9,10 @@ $$('[data-page="main"]').on('click', '.toggle', function () {
 })
 
 var currentPlugin
-$$('[data-page="main"]').on('click', 'li', function (e) {
+$$('[data-page="main"]').on('click', '.sortable li', function (e) {
 	currentPlugin = e.target.id
 	API.getPluginConfig(currentPlugin, function(err, config) {
-		$$('iframe')[0].src = API.host+'/api/plugin/'+config.id+'/index.html'+API.encodeConfig(config)
+		$$('iframe')[0].src = API.host+'/api/plugin/'+config.id+'/config/index.html'+API.encodeConfig(config)
 	})
 })
 
@@ -43,6 +43,20 @@ $$('.views').on('click', '#loginForm a', function (e) {
 
 $$('.views').on('click', '#signupForm a', function (e) {
   	$$('#signupForm input[type="submit"]').click()
+})
+
+$$('.views').on('change', '#enableAlarm', function (e) {
+	if ($$('#enableAlarm')[0].checked)
+	  	API.enableAlarm($$('#time')[0].value.replace(':', ''))
+	else
+		API.disableAlarm()
+})
+
+$$('.views').on('keypress', '#time', function (e) {
+	if (e.keyCode == 13) {
+		if (!$$('#enableAlarm')[0].checked) return
+	  	API.enableAlarm($$('#time')[0].value.replace(':', ''))
+	}
 })
 
 window.addEventListener("message", function(e) {

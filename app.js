@@ -21,9 +21,18 @@ function init() {
 }
 
 function initLogged() {
+
 	API.getPlugins(function(err, plugins) {
 		Template7.data['page:main'] = {plugins: plugins}
 		$$('a[href="main.html"]').click()
+
+		API.getAlarm(function(err, data) {
+			$$('#enableAlarm')[0].checked = JSON.parse(data.enable)
+			var time = data.time.toString()
+			if (time.length == 3) time = '0'+time
+			time = time.substring(0,2) + ':' + time.substring(2,4)
+			$$('#time')[0].value = time
+		})
 	})
 
 	API.getAvailablePlugins(function(err, plugins) {
