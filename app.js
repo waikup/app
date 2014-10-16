@@ -27,6 +27,7 @@ function initLogged() {
 		$$('a[href="main.html"]').click()
 
 		API.getAlarm(function(err, data) {
+			if (!data) return
 			$$('#enableAlarm')[0].checked = JSON.parse(data.enable)
 			var time = data.time.toString()
 			if (time.length == 3) time = '0'+time

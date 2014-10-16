@@ -15,7 +15,7 @@ API.req = function(method, endpoint, params, cb) {
 	xhr.onreadystatechange = function() {
 	    if (xhr.readyState !== 4) cb && cb(false)
 	    var err = (xhr.status == 200) ? false : true
-		console.log(xhr.responseText)
+		if (!xhr.responseText) return
 	    cb && cb(err, JSON.parse(xhr.responseText))
 	}
 	xhr.send(JSON.stringify(params))
@@ -24,6 +24,7 @@ API.req = function(method, endpoint, params, cb) {
 var pluginStore = {}
 API.getPlugins = function(cb) {
 	API.req('GET', '/plugins/installed', null, function(err, data) {
+		if (!data) return
 		delete data.err
 		delete data['']
 		pluginStore = data
