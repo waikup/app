@@ -36,6 +36,7 @@ function initLogged() {
 	})
 
 	API.getAvailablePlugins(function(err, plugins) {
+		app.alert('holi')
 		Template7.data['url:add.html'] = {plugins: plugins}
 	})
 }
