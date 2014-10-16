@@ -69,7 +69,12 @@ $$('.views').on('change', '#enableAlarm', function (e) {
 		API.disableAlarm()
 })
 
+$$('.views').on('click', '#timeLabel', function (e) {
+  	$$('input[type="time"]').click()
+})
+
 $$('.views').on('input', '#time', function (e) {
+	$$('#timeLabel').text($$('#time')[0].value)
 	if (!$$('#enableAlarm')[0].checked) return
 	API.enableAlarm($$('#time')[0].value.replace(':', ''))
 })
