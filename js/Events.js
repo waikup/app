@@ -78,7 +78,6 @@ $$('.views').on('keypress', '#time', function (e) {
 
 window.addEventListener("message", function(e) {
 	var plugin = JSON.parse(e.data)
-	console.log(plugin)
-	API.savePlugin(currentPlugin, plugin.attr)
+	pluginStore[currentPlugin] = plugin.attr
 	app.router.back()
 }, false)
