@@ -77,7 +77,9 @@ $$('.views').on('keypress', '#time', function (e) {
 })
 
 window.addEventListener("message", function(e) {
-	var plugin = JSON.parse(e.data)
+	console.log('holi')
+	/*var plugin = JSON.parse(e.data)
 	pluginStore[currentPlugin] = plugin.attr
-	app.router.back()
+	API.savePlugins()*/
+	mainView.router.back()
 }, false)
