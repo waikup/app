@@ -4,8 +4,13 @@ $$('[data-page="main"]').on('click', '.toggle', function () {
 	var text = (toggled) ? 'Done' : 'Edit'
  	$$('.toggle').text(text)
  	app.sortableToggle('.sortable')	
- 	if (!toggled)
- 		console.log('send to server')
+ 	if (!toggled) {
+ 		console.log('holahola')
+ 		$$('.sortable li').each(function(i, el) {
+ 			console.log(el)
+ 		})
+ 		API.savePlugins()
+ 	}
 })
 
 var currentPlugin
@@ -18,9 +23,8 @@ $$('[data-page="main"]').on('click', '.sortable li', function (e) {
 
 $$('.views').on('click', '[data-page="add"] li', function (e) {
 	app.router.load({url: 'main.html', reload: true})
-	API.addPlugin(e.target.id, function(err) {
-		console.log(err)
-	})
+	pluginStore[e.target.id] = {}
+	API.savePlugins()
 })
 
 function onToken(token) {

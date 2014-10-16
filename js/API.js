@@ -15,14 +15,15 @@ API.req = function(method, endpoint, params, cb) {
 	xhr.onreadystatechange = function() {
 	    if (xhr.readyState !== 4) cb(false)
 	    var err = (xhr.status == 200) ? false : true
-		console.log(xhr.responseText)
 	    cb(err, JSON.parse(xhr.responseText))
 	}
 	xhr.send(JSON.stringify(params))
 }
 
+var pluginStore = {}
 API.getPlugins = function(cb) {
 	API.req('GET', '/plugins/installed', null, function(err, data) {
+		pluginStore = data
 		if (err) return
 		var plugins = []
 		for (var id in data) {
@@ -44,10 +45,8 @@ API.getAvailablePlugins = function(cb) {
 	})
 }
 
-API.getPluginConfig = function(id, cb) {
-	setTimeout(function() {
-		cb(null, API.mock.pluginConfig)
-	}, 500)
+API.savePlugins = function() {
+	API.req('POST', '/plugins/installed', pluginStore, null)
 }
 
 API.addPlugin = function(name, cb) {
@@ -59,24 +58,12 @@ API.getAlarm = function(cb) {
 }
 
 API.enableAlarm = function(time) {
-	API.req('POST', '/enable', {time: time}, function(err, data) {
-		console.log(data)
-	})
+	API.req('POST', '/enable', {time: time}, null)
 }
 
 API.disableAlarm = function(time) {
-	API.req('POST', '/disable', {}, function(err, data) {
-		console.log(data)
-	})
+	API.req('POST', '/disable', {}, null)
 }
-
-API.savePlugin = function(name, uuid, attr) {}
-
-API.setOrder = function(array) {}
-
-API.getTime = function(cb) {}
-
-API.setTime = function(time) {}
 
 API.encodeConfig = function(data) {
 	var encoded = '#'
@@ -94,17 +81,5 @@ API.connectIbeacon = function(major, minor) {
 		if (prevMajor == major && prevMinor == minor)
 			return
 	}
-	API.req('POST', '/connect', {major: major, minor: minor}, function(err, data) {
-		console.log(err)
-		console.log(data)
-	})
-}
-
-API.mock = {}
-
-API.mock.pluginConfig = {
-	id: 'soundcloud',
-	name: 'SoundCloud',
-	str: 'holahola',
-	int: 9
+	API.req('POST', '/connect', {major: major, minor: minor}, cb)
 }
