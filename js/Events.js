@@ -20,7 +20,6 @@ $$('[data-page="main"]').on('click', '.sortable li', function (e) {
 
 function hack() {
 	var config = pluginStore[currentPlugin]
-	config.token = localStorage.getItem('token')
 	var url = API.host+'/api/plugin/'+currentPlugin+'/config/index.html'+API.encodeConfig(config)
 	console.log(url)
 	$$('iframe')[0].src = url
