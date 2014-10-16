@@ -24,12 +24,15 @@ API.req = function(method, endpoint, params, cb) {
 var pluginStore = {}
 API.getPlugins = function(cb) {
 	API.req('GET', '/plugins/installed', null, function(err, data) {
+		delete data.err
+		delete data['']
 		pluginStore = data
 		if (err) return
 		var plugins = []
 		for (var id in data) {
 			data[id].id = id
-			plugins.push(data[id])
+			if (id !== 'err' || id !== '')
+				plugins.push(data[id])
 		}
 		cb(err, plugins)
 	})
