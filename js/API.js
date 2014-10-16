@@ -86,5 +86,6 @@ API.connectIbeacon = function(major, minor, cb) {
 		if (prevMajor == major && prevMinor == minor)
 			return
 	}
+	localStorage.setItem('major', major)
 	API.req('POST', '/connect', {major: major, minor: minor}, cb)
 }

@@ -21,6 +21,7 @@ $$('[data-page="main"]').on('click', '.sortable li', function (e) {
 
 function hack() {
 	var config = pluginStore[currentPlugin]
+	delete config.id
 	var url = API.host+'/api/plugin/'+currentPlugin+'/config/index.html'+API.encodeConfig(config)
 	console.log(url)
 	$$('iframe')[0].src = url
@@ -67,10 +68,6 @@ $$('.views').on('change', '#enableAlarm', function (e) {
 	  	API.enableAlarm($$('#time')[0].value.replace(':', ''))
 	else
 		API.disableAlarm()
-})
-
-$$('.views').on('click', '#timeLabel', function (e) {
-  	$$('input[type="time"]').click()
 })
 
 $$('.views').on('input', '#time', function (e) {
