@@ -16,6 +16,7 @@ $$('[data-page="main"]').on('click', '.toggle', function () {
 var currentPlugin
 $$('[data-page="main"]').on('click', '.sortable li', function (e) {
 	currentPlugin = e.target.id
+	setTimeout(hack, 1000)
 })
 
 function hack() {
