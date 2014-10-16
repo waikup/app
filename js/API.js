@@ -1,5 +1,5 @@
 var API = {
-	host: 'http://35cb0e44.ngrok.com'
+	host: 'http://192.168.1.128:8080'
 }
 
 API.setToken = function(token) {}
