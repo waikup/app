@@ -6,14 +6,16 @@
 					<span>Back</span>
 			</a>
 		</div>
-		<div class="center sliding">{{name}}</div>
+		<div class="center sliding">{{id}}</div>
 		<div class="right">
-			<a href="#" class="link icon-only open-panel"><i class="icon icon-bars-blue"></i></a>
+			<a href="#" class="link delete">
+					<span>Delete</span>
+			</a>
 		</div>
 	</div>
 </div>
 <div data-page="plugin" class="page">
  	<div class="page-content">
- 		<iframe src="/plugins/{{id}}" sandbox seamless></iframe>
+ 		<iframe sandbox seamless allow-scripts onload='hack()'></iframe>
   	</div>
 </div>

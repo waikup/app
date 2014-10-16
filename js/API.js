@@ -13,9 +13,10 @@ API.req = function(method, endpoint, params, cb) {
 	xhr.setRequestHeader("X-User-Token", localStorage.getItem('token'))
 
 	xhr.onreadystatechange = function() {
-	    if (xhr.readyState !== 4) cb(false)
+	    if (xhr.readyState !== 4) cb && cb(false)
 	    var err = (xhr.status == 200) ? false : true
-	    cb(err, JSON.parse(xhr.responseText))
+		console.log(xhr.responseText)
+	    cb && cb(err, JSON.parse(xhr.responseText))
 	}
 	xhr.send(JSON.stringify(params))
 }
@@ -45,8 +46,8 @@ API.getAvailablePlugins = function(cb) {
 	})
 }
 
-API.savePlugins = function() {
-	API.req('POST', '/plugins/installed', pluginStore, null)
+API.savePlugins = function(cb) {
+	API.req('POST', '/plugins/installed', {plugins: pluginStore}, cb)
 }
 
 API.addPlugin = function(name, cb) {

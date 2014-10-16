@@ -16,15 +16,28 @@ $$('[data-page="main"]').on('click', '.toggle', function () {
 var currentPlugin
 $$('[data-page="main"]').on('click', '.sortable li', function (e) {
 	currentPlugin = e.target.id
-	API.getPluginConfig(currentPlugin, function(err, config) {
-		$$('iframe')[0].src = API.host+'/api/plugin/'+config.id+'/config/index.html'+API.encodeConfig(config)
+
+})
+
+function hack() {
+	var config = pluginStore[currentPlugin]
+	var url = API.host+'/api/plugin/'+currentPlugin+'/config/index.html'+API.encodeConfig(config)
+	console.log(url)
+	$$('iframe')[0].src = url
+}
+
+$$('.views').on('click', '.delete', function () {
+	delete pluginStore[currentPlugin]
+	API.savePlugins(function() {
+		window.location.reload()
 	})
 })
 
 $$('.views').on('click', '[data-page="add"] li', function (e) {
-	app.router.load({url: 'main.html', reload: true})
 	pluginStore[e.target.id] = {}
-	API.savePlugins()
+	API.savePlugins(function() {
+		window.location.reload()
+	})
 })
 
 function onToken(token) {
