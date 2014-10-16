@@ -79,7 +79,7 @@ API.encodeConfig = function(data) {
 	return encoded
 }
 
-API.connectIbeacon = function(major, minor) {
+API.connectIbeacon = function(major, minor, cb) {
 	if (localStorage.getItem('major')) {
 		var prevMajor = JSON.parse(localStorage.getItem('major')),
 			prevMinor = JSON.parse(localStorage.getItem('minor'))
