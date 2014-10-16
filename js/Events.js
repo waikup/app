@@ -68,11 +68,9 @@ $$('.views').on('change', '#enableAlarm', function (e) {
 		API.disableAlarm()
 })
 
-$$('.views').on('keypress', '#time', function (e) {
-	if (e.keyCode == 13) {
-		if (!$$('#enableAlarm')[0].checked) return
-	  	API.enableAlarm($$('#time')[0].value.replace(':', ''))
-	}
+$$('.views').on('input', '#time', function (e) {
+	if (!$$('#enableAlarm')[0].checked) return
+	API.enableAlarm($$('#time')[0].value.replace(':', ''))
 })
 
 window.addEventListener("message", function(e) {
