@@ -32,6 +32,7 @@ BLE.createDelegate = function() {
 	    didStartMonitoringForRegion: function (result) {},
 	    didRangeBeaconsInRegion: function (result) {
 	    	console.log('lolaso')
+	    	console.log(result)
 	    	if (result.beacons.length > 0)
 	    		BLE.onibeacon(result.beacons[0])
 	    }
