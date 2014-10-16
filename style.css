@@ -26,3 +26,7 @@ div[data-page="landing"] .content-block-title {
 input[type="submit"] {
 	display: none;
 }
+
+input[type="time"] {
+	border: none;
+}
