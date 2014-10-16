@@ -12,7 +12,7 @@ var currentPlugin
 $$('[data-page="main"]').on('click', 'li', function (e) {
 	currentPlugin = e.target.id
 	API.getPluginConfig(currentPlugin, function(err, config) {
-		$$('iframe')[0].src = API.host+'/plugins/'+config.id+API.encodeConfig(config)
+		$$('iframe')[0].src = API.host+'/api/plugin/'+config.id+'/index.html'+API.encodeConfig(config)
 	})
 })
 
@@ -47,6 +47,7 @@ $$('.views').on('click', '#signupForm a', function (e) {
 
 window.addEventListener("message", function(e) {
 	var plugin = JSON.parse(e.data)
+	console.log(plugin)
 	API.savePlugin(currentPlugin, plugin.attr)
 	app.router.back()
 }, false)

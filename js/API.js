@@ -1,5 +1,5 @@
 var API = {
-	host: 'http://192.168.1.128:8080'
+	host: 'http://35cb0e44.ngrok.com'
 }
 
 API.setToken = function(token) {}
@@ -43,15 +43,9 @@ API.savePlugin = function(name, uuid, attr) {}
 
 API.setOrder = function(array) {}
 
-API.getTime = function(cb) {
-	$.getJSON(API.host+'/api/time', function(data) {
-		cb(data['time'])
-	})
-}
+API.getTime = function(cb) {}
 
-API.setTime = function(time) {
-	$.post(API.host+'/api/time', {'time': time})
-}
+API.setTime = function(time) {}
 
 API.encodeConfig = function(data) {
 	var encoded = '#'
@@ -63,18 +57,6 @@ API.encodeConfig = function(data) {
 }
 
 API.connectIbeacon = function(major, minor) {
-	/*var xhr = new XMLHttpRequest(),
-		params = JSON.stringify({major: major, minor: minor})
-
-	xhr.open("POST", API.host+'/api/connect', true)
-
-	xhr.setRequestHeader("Content-type", "application/json")
-
-	xhr.onreadystatechange = function() {
-	    if (xhr.readyState == 4 && xhr.status == 200)
-	        console.log(xhr.responseText)
-	}
-	xhr.send(params)*/
 	if (localStorage.getItem('major')) {
 		var prevMajor = JSON.parse(localStorage.getItem('major')),
 			prevMinor = JSON.parse(localStorage.getItem('minor'))
