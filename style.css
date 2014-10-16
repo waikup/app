@@ -28,6 +28,6 @@ input[type="submit"] {
 }
 
 input[type="time"] {
-	display: none;
 	border: none;
+	background: white;
 }
