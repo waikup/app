@@ -1,0 +1,51 @@
+<div class="navbar">
+	<div class="navbar-inner">
+		<div class="left">
+			<a href="#" class="back link">
+				<i class="icon icon-back-blue"></i>
+					<span>Back</span>
+			</a>
+		</div>
+		<div class="center sliding">Login</div>
+	</div>
+</div>
+<div data-page="login" class="page">
+ 	<div class="page-content">
+ 		<div class="content-block-title">Login</div>
+ 		<form action="http://192.168.1.128:8080/api/login" method="POST" class="ajax-submit" id="loginForm">
+	    	<div class="list-block">
+	  			<ul>
+	    			<li>
+	      				<div class="item-content">
+	        				<div class="item-inner">
+	          					<div class="item-input">
+	            					<input type="text" placeholder="Username" name="username">
+	          					</div>
+	        				</div>
+	      				</div>
+	    			</li>
+	    			<li>
+	      				<div class="item-content">
+	        				<div class="item-inner">
+	          					<div class="item-input">
+	            					<input type="password" placeholder="Password" name="password" id="loginEnter">
+	          					</div>
+	        				</div>
+	      				</div>
+	    			</li>
+	    			<li>
+	      				<div class="item-content">
+	        				<div class="item-inner">
+	          					<div class="item-input">
+	    							<p><a href="#" class="button">Login</a></p>
+	    						</div>
+	        				</div>
+	      				</div>
+	    			</li>
+	            	<input type="submit">
+	    		</ul>
+	    	</div>
+	    </form>
+        <!--<input type="date" placeholder="Birth day" value="2014-04-30">-->
+  	</div>
+</div>
