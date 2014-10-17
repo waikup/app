@@ -51,6 +51,8 @@ API.getAvailablePlugins = function(cb) {
 }
 
 API.savePlugins = function(cb) {
+	for (var key in pluginStore)
+		delete pluginStore[key]['id']
 	API.req('POST', '/plugins/installed', {plugins: pluginStore}, cb)
 }
 
@@ -87,5 +89,6 @@ API.connectIbeacon = function(major, minor, cb) {
 			return
 	}
 	localStorage.setItem('major', major)
+	localStorage.setItem('minor', minor)
 	API.req('POST', '/connect', {major: major, minor: minor}, cb)
 }
