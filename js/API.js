@@ -51,6 +51,8 @@ API.getAvailablePlugins = function(cb) {
 }
 
 API.savePlugins = function(cb) {
+	for (var key in pluginStore)
+		delete pluginStore[key]['id']
 	API.req('POST', '/plugins/installed', {plugins: pluginStore}, cb)
 }
 
