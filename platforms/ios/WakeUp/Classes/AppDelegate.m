@@ -27,7 +27,6 @@
 
 #import "AppDelegate.h"
 #import "MainViewController.h"
-
 #import <Cordova/CDVPlugin.h>
 
 @implementation AppDelegate
@@ -87,7 +86,11 @@
 
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
-
+    
+    CLLocationManager *man = [[CLLocationManager alloc] init];
+    [man requestAlwaysAuthorization];
+    [man requestWhenInUseAuthorization];
+    
     return YES;
 }
 

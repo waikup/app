@@ -28,8 +28,9 @@
 #import <UIKit/UIKit.h>
 
 #import <Cordova/CDVViewController.h>
+#import <CoreLocation/CoreLocation.h>
 
-@interface AppDelegate : NSObject <UIApplicationDelegate>{}
+@interface AppDelegate : NSObject <UIApplicationDelegate, CLLocationManagerDelegate>{}
 
 // invoke string is passed to your app on launch, this is only valid if you
 // edit WakeUp-Info.plist to add a protocol

@@ -1,6 +1,7 @@
 document.addEventListener("deviceready", function() {
+    window.plugin.backgroundMode.enable()
 	BLE.init()
-	window.plugin.backgroundMode.enable()
+	
 })
 
 var BLE = {
@@ -10,10 +11,9 @@ var BLE = {
 BLE.init = function() {
 	var delegate = BLE.createDelegate(),
 		beaconRegion = BLE.createBeaconRegion()
-		
+    
+    cordova.plugins.locationManager.requestAlwaysAuthorization()
 	cordova.plugins.locationManager.setDelegate(delegate)
-	if (device.platform == 'iOS')
-		cordova.plugins.locationManager.requestWhenInUseAuthorization()
 	cordova.plugins.locationManager.startMonitoringForRegion(beaconRegion).fail(console.error.bind(console)).done()
 	cordova.plugins.locationManager.startRangingBeaconsInRegion(beaconRegion).fail(console.error.bind(console)).done()
 }
@@ -30,10 +30,11 @@ BLE.createDelegate = function() {
 	return new cordova.plugins.locationManager.Delegate().implement({
 	    didDetermineStateForRegion: function (result) {},
 	    didStartMonitoringForRegion: function (result) {},
+        didChangeAuthorizationStatus: function(result) {
+        },
 	    didRangeBeaconsInRegion: function (result) {
-	    	console.log('lolaso')
-	    	console.log(result)
-	    	if (result.beacons.length > 0)
+
+            if (result.beacons.length > 0)
 	    		BLE.onibeacon(result.beacons[0])
 	    }
 	})

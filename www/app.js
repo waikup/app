@@ -22,7 +22,6 @@ function init() {
 
 function initLogged() {
     
-    console.log("Log")
     if (device.platform == 'iOS')
         cordova.plugins.locationManager.requestWhenInUseAuthorization()
 	API.getPlugins(function(err, plugins) {

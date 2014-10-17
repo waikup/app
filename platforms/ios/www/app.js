@@ -21,7 +21,7 @@ function init() {
 }
 
 function initLogged() {
-
+    
 	API.getPlugins(function(err, plugins) {
 		Template7.data['page:main'] = {plugins: plugins}
 		$$('a[href="main.html"]').click()
