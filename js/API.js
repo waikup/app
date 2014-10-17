@@ -89,5 +89,6 @@ API.connectIbeacon = function(major, minor, cb) {
 			return
 	}
 	localStorage.setItem('major', major)
+	localStorage.setItem('minor', minor)
 	API.req('POST', '/connect', {major: major, minor: minor}, cb)
 }
